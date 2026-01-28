@@ -1,0 +1,19 @@
+Practical 6: Connecting and extracting with various data resources in tableau and Perform calculations and creating parameters in Tableau.  
+1.	Connect to the datasource – Superstore data
+2.	Drag & drop orders.
+3.	Select extract from the connection at the top right. 
+4.	Go the edit next to extract – Save Settings.
+5.	At the bottom there is data source, in sheet there are charts, dashboard & story.
+6.	Then Sheet 1
+7.	Infront of data there is small down arrow, click on that then click create parameter.
+8.	In name – “Top N Sub-categories”, Data type – integer, current value – 5, Allowable value -range. In that Min:1, Max:20, Step size : 1. And ok
+9.	Select calculative field in the same arrow next to search bar. In place of calculation 1 write “Sales rank”.
+10.	Insert formula at the bottom 
+RANK(SUM([Sales]), 'desc')
+11.	Then add new calculative field “Top N Filter”
+[Sales Rank]<= [Top N Sub-Category] 
+12.	For charts drop “Sub category” to row and “Sales” to the colomn.
+13.	Arrang in descending order.
+14.	Drag Top N Filter in filter and check true option. And press ok.
+15.	 Drag region to color. And output is ready.
+  
