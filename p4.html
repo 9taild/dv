@@ -1,0 +1,48 @@
+import pandas as pd
+import numpy as np
+
+data = [10, 20, 30, 40, 50]
+series = pd.Series(data)
+
+print("Original Series:")
+print(series)
+
+print("\nAccessing elements at index 2 and 4:")
+print(f"Element at index 2: {series[2]}")
+print(f"Element at index 4: {series[4]}")
+
+
+print("\nMathematical Operations:")
+print(f"Adding 5 to each element:\n{series + 5}")
+print(f"Subtracting 10 from each element:\n{series - 10}")
+print(f"Multiplying each element by 2:\n{series * 2}")
+print(f"Dividing each element by 5:\n{series / 5}")
+print(f"Square of each element:\n{series**2}")
+
+
+print("\nAggregation Operations:")
+print(f"Sum of elements: {series.sum()}")
+print(f"Mean of elements: {series.mean()}")
+print(f"Minimum element: {series.min()}")
+print(f"Maximum element: {series.max()}")
+
+
+print("\nIndexing and Slicing:")
+print(f"Slicing from index 1 to 3:\n{series[1:4]}")
+print(f"Elements greater than 20:\n{series[series > 20]}")
+
+
+print("\nApplying Custom Function:")
+def subtract_three(x):
+  return x - 3
+
+print(f"Subtracting 3 from each element using custom function:\n{series.apply(subtract_three)}")
+
+
+print("\nSorting the elements in ascending order:")
+print(series.sort_values())
+
+
+
+print("\nChecking for NaN values:")
+print(series.isna())
