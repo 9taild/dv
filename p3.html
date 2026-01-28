@@ -1,0 +1,88 @@
+1. SETUP AND DATA LOADING
+
+Open Power BI Desktop.
+
+Click 'Get Data' > 'Excel workbook'.
+
+Select the 'Superstore Sample Dataset' and load the 'Orders' table.
+
+Confirm fields like Order Date, Sales, Profit, and Category appear in the Data pane.
+
+2. KPI CARDS (TOP OVERVIEW)
+
+Click the 'Card' icon in the Visualizations pane.
+
+Drag 'Sales' into the Fields well. (Result: 2.30M) .
+
+Create a second Card and drag 'Profit' into Fields. (Result: 286.40K) .
+
+Create a third Card and drag 'Quantity' into Fields. (Result: 38K) .
+
+Place these at the top of your dashboard for a quick overview.
+
+3. PROFIT BY SUB-CATEGORY (BAR CHART)
+
+Click the 'Clustered Bar Chart' icon.
+
+Drag 'Sub-Category' to the 'Y-axis' (or Axis field).
+
+Drag 'Profit' to the 'X-axis' (or Values field).
+
+Purpose: To compare profit performance across different product sub-categories.
+
+4. PROFIT BY YEAR AND QUARTER (LINE CHART)
+
+Click the 'Line Chart' icon.
+
+Drag 'Order Date' to the 'X-axis'.
+
+In the X-axis field, right-click 'Order Date' and ensure it is set to 'Date Hierarchy'. Remove 'Month' and 'Day' so only 'Year' and 'Quarter' remain.
+
+Drag 'Profit' to the 'Y-axis'.
+
+Observation: Higher profits in 2019 indicate peak business periods.
+
+5. REGIONAL AND SEGMENT ANALYSIS (DONUT CHARTS)
+
+Profit by Region: Select 'Donut Chart'. Drag 'Region' to Legend and 'Profit' to Values. Note: West Region should be highest (37.84%).
+
+Profit by Segment: Select 'Donut Chart'. Drag 'Segment' to Legend and 'Profit' to Values. Note: Consumer Segment should be highest (46.83%).
+
+Profit by Category: Select 'Donut Chart'. Drag 'Category' to Legend and 'Profit' to Values. Note: Technology should be highest (50.79%).
+
+6. THE MASTER MATRIX (DETAILED TABLE)
+
+Click the 'Matrix' icon.
+
+Rows: Drag 'Sub-Category'.
+
+Columns: Drag 'Region' (Central, East, South, West).
+
+Values: Drag 'Profit'.
+
+This creates the detailed breakdown showing totals for items like Accessories (41,936.64) and Phones (44,515.73).
+
+OPTIONAL...
+
+Step-by-Step: Adding the State Slicer
+Select the Slicer Tool: In the Visualizations pane, click the Slicer icon (it looks like a funnel inside a small square).
+
+
+Assign the Field: Drag the State field from your Data pane into the Field well of the Slicer.
+
+Change to Checklist Style:
+
+By default, it might appear as a list. To ensure it has checkboxes like the image, click the Format visual (paintbrush) icon.
+
+Go to Slicer settings > Options > Style.
+
+Select Vertical list.
+
+Enable "Select All" (Optional):
+
+In the same Slicer settings menu, go to Selection.
+
+Toggle Show "Select all" to On. This allows you to reset the filter quickly.
+
+
+Positioning: Resize the slicer into a tall, thin rectangle and move it to the left side of your canvas to match the "Sample Super Profit Report" layout.
