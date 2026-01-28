@@ -1,0 +1,125 @@
+PRACTICAL 2 – STEP BY STEP RECIPE (POWER BI DESKTOP)
+
+Aim: Time Intelligence and Data Analysis Functions with DAX Dataset:
+Superstore dataset (Orders table with Order Date, Sales, Profit,
+Category, Sub-Category)
+
+  --------------------------------------------------
+  PART 0: OPEN PROJECT AND LOAD DATA
+  --------------------------------------------------
+  1. Open Power BI Desktop. 2. Click “Get Data”
+  (Home tab). 3. Select “Excel” (or CSV if
+  applicable). 4. Browse and select the Superstore
+  dataset file. 5. Click “Open”. 6. In Navigator
+  window, select the sheet/table named “Orders”. 7.
+  Click “Load”.
+
+  --------------------------------------------------
+
+PART 1: PROFIT CATEGORY CLASSIFICATION (CALCULATED COLUMN)
+
+Goal: Create a column that labels profit as High or Low.
+
+1.  Go to the left sidebar → Click “Data” view (table icon).
+
+2.  Click on the table “Orders”.
+
+3.  From the top ribbon → Click “Table tools” → Click “New column”.
+
+4.  In the formula bar, type:
+
+Profit Category = IF(Orders[Profit] > 100, "High", "Low")
+
+5.  Press Enter.
+
+6.  Verify a new column named “Profit Category” appears.
+
+7.  Go to “Report” view.
+
+8.  Insert a “Clustered column chart” visual.
+
+9.  Drag “Profit Category” → Axis.
+
+10. Drag “Profit” → Values.
+
+  --------------------------------------------------
+  PART 2: CATEGORY SUMMARY TABLE (SUMMARIZE)
+  --------------------------------------------------
+  Goal: Create a grouped summary table.
+
+  1. Go to the “Data” view. 2. From top ribbon →
+  Click “Table tools” → Click “New table”. 3. In
+  formula bar, type:
+
+Category Summary =
+SUMMARIZE(
+    Orders,
+    Orders[Category],
+    Orders[Sub-Category],
+    "Total Sales", SUM(Orders[Sales]),
+    "Total Profit", SUM(Orders[Profit])
+)
+
+  4. Press Enter. 5. Confirm a new table named
+  “Category Summary” appears. 6. Go to “Report”
+  view. 7. Insert a “Matrix” visual. 8. Drag
+  “Category” → Rows. 9. Drag “Sub-Category” → Rows.
+  10. Drag “Total Sales” → Values. 11. Drag “Total
+  Profit” → Values.
+  --------------------------------------------------
+
+PART 3: MONTH-OVER-MONTH (MoM) GROWTH MEASURE
+
+Goal: Create a time intelligence measure.
+
+1.  Go to “Data” view.
+
+2.  Click on table “Orders”.
+
+3.  From top ribbon → Click “Table tools” → Click “New measure”.
+
+4.  In formula bar, type:
+
+MoM Growth =
+VAR MaxDate = MAX(Orders[Order Date])
+VAR CurrentMonthSales =
+    CALCULATE(
+        SUM(Orders[Sales]),
+        MONTH(Orders[Order Date]) = MONTH(MaxDate) &&
+        YEAR(Orders[Order Date]) = YEAR(MaxDate)
+    )
+VAR PreviousMonthSales =
+    CALCULATE(
+        SUM(Orders[Sales]),
+        MONTH(Orders[Order Date]) = MONTH(MaxDate) - 1 &&
+        YEAR(Orders[Order Date]) = YEAR(MaxDate)
+    )
+RETURN
+DIVIDE(
+    CurrentMonthSales - PreviousMonthSales,
+    PreviousMonthSales,
+    0
+)
+
+5.  Press Enter.
+
+6.  Confirm a measure named “MoM Growth” appears.
+
+  --------------------------------------------------
+  PART 4: LINE CHART – MONTH-OVER-MONTH GROWTH
+  --------------------------------------------------
+  1. Go to “Report” view. 2. Insert a “Line chart”
+  visual. 3. Drag “Order Date” → Axis. 4. Click
+  dropdown next to Order Date → Select “Month” or
+  “Date hierarchy → Month”. 5. Drag “MoM Growth” →
+  Values. 6. Format if needed: - Visualizations pane
+  → Format (paint roller icon). - Turn on Data
+  labels. - Set Y-axis → Percentage.
+
+  --------------------------------------------------
+
+END OF PRACTICAL 2
+
+Outputs: - Column: Profit Category - Table: Category Summary - Measure:
+MoM Growth - Visuals: • Profit Category Column Chart • Category Summary
+Matrix • MoM Growth Line Chart
