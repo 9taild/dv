@@ -1,0 +1,68 @@
+import pandas as pd
+import numpy as np
+
+
+#create a sample DataFrame for demonstration
+data = {
+'Date': ['2024-01-01', '2024-01-01', '2024-01-02', '2024-01-02', '2024-01-03', '2024-01-03'],
+'City': ['New York', 'Los Angeles', 'New York', 'Los Angeles', 'New York', 'Los Angeles'], 'Temperature': [32, 75, 30, 72, 28, 70],
+'Humidity': [80, 10, 85, 15, 90, 12]
+}
+
+#create Dataframe
+df = pd.DataFrame(data)
+print("Original DataFrame:")
+print(df)
+
+#pivot the DataFrame to reshape it, setting 'date' as index and 'city' as columns
+pivot_df = df.pivot(index='Date', columns='City', values=['Temperature', 'Humidity'])
+print("\nPivoted DataFrame:")
+print(pivot_df)
+
+
+
+#use pivot_table() to aggregate the data if multiple values exist for the same index/colum combination
+data_agg = {
+'Date': ['2024-01-01', '2024-01-01', '2024-01-02', '2024-01-02', '2024-01-03', '2024-01-03'],
+'City': ['New York', 'New York', 'Los Angeles', 'Los Angeles', 'New York', 'New York'], 'Temperature': [32, 35, 72, 74, 28, 30],
+'Humidity': [80, 78, 15, 18, 90, 92]
+}
+df_agg = pd.DataFrame(data_agg)
+pivot_table_df = df_agg.pivot_table(index='Date', columns='City', values=['Temperature', 'Humidity'],
+aggfunc='mean')
+
+print("\nPivot Table DataFrame (with aggregation):")
+print(pivot_table_df)
+
+
+
+#melt the DataFrame to long format, turning columns into rows
+melted_df = df.melt(id_vars=['Date', 'City'], value_vars=['Temperature', 'Humidity'],
+                    var_name='Metric', value_name='Value')
+print("\nMelted DataFrame:")
+print(melted_df)
+
+
+#first, set 'date' and 'city' as a multiindex for hierarchical structure
+df_stacked = df.set_index(['Date', 'City'])
+
+
+#stack the dataFrame (compress columns into a single column level)
+stacked_df = df_stacked.stack()
+print("\nStacked DataFrame (Hierarchical):")
+print(stacked_df)
+
+#unstack the dataframe
+unstacked_df = stacked_df.unstack()
+print("\nUnstacked DataFrame (Reverted to original columns):")
+print(unstacked_df)
+
+
+
+
+
+
+
+
+
+
